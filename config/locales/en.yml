@@ -59,3 +59,20 @@ en:
   user-profile: "User profile"
   booking-history: "Booking history"
 
+  admin:
+    layout:
+      footer: "footer"
+      header: "Toggle navigation"
+      haeder_title: "Manage Page"
+      profile: "Profile"
+    sidebar:
+      dashboard: "Dashboard"
+      bus: "Manage Bus"
+      showBus: "Show list bus"
+      addBus: "Add Bus"
+      statistic: "Statistics"
+      schedule: "Manage schedule"
+      showSchedule: "Show list schedule"
+      addSchedule: "Add schedule"
+      statisticSchedule: "Statistics schedule"
+      statisticPassenger: "Statistics passenger"

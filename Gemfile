@@ -15,7 +15,8 @@ gem "select2-rails"
 gem "bootstrap-sass"
 gem "jquery-rails"
 gem "bootstrap-datepicker-rails"
-
+gem "font-awesome-rails"
+gem "factory_bot_rails"
 gem "coffee-rails", "~> 4.2"
 gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.5"
@@ -30,7 +31,7 @@ group :development, :test do
   gem "rspec"
   gem "rspec-rails"
   gem "rspec-collection_matchers"
-  gem "factory_bot_rails"
+
   gem "better_errors"
   gem "guard-rspec", require: false
   gem "database_cleaner"

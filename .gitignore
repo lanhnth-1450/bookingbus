@@ -33,3 +33,5 @@
 # Ignore i18n js file
 /public/javascripts/i18n.js
 /public/javascripts/translation.js
+
+/vendor

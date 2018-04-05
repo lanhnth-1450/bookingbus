@@ -1,0 +1,73 @@
+<div class="navbar-default sidebar" role="navigation">
+  <div class="sidebar-nav navbar-collapse">
+    <ul class="nav" id="side-menu">
+      <li class="sidebar-search">
+        <div class="input-group custom-search-form">
+          <input type="text" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+          <i class="fa fa-search"></i>
+          </button>
+          </span>
+        </div>
+      </li>
+      <li>
+        <%= link_to "#" do%>
+          <i class="fa fa-dashboard fa-fw"></i>
+          <%= t "admin.sidebar.dashboard" %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "javascript:;", data: {toggle: "collapse", target: "#bus"} do%>
+          <i class="fa fa-wrench fa-fw"></i>
+          <%= t "admin.sidebar.bus" %>
+          <span class="fa arrow"></span>
+        <% end %>
+        <ul class="nav nav-second-level collapse" id="bus">
+          <li>
+            <%= link_to t("admin.sidebar.showBus"), "javascript:;" %>
+          </li>
+          <li>
+            <%= link_to t("admin.sidebar.addBus"), "javascript:;" %>
+          </li>
+          <li>
+            <%= link_to t("admin.sidebar.statistic"), "javascript:;" %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to "javascript:;", data: {toggle: "collapse", target: "#schedule"} do%>
+          <i class="fa fa-wrench fa-fw"></i>
+          <%= t "admin.sidebar.schedule" %>
+          <span class="fa arrow"></span>
+        <% end %>
+        <ul class="nav nav-second-level collapse" id="schedule">
+          <li>
+            <%= link_to t("admin.sidebar.showSchedule"), "javascript:;" %>
+          </li>
+          <li>
+            <%= link_to t("admin.sidebar.addSchedule"), "javascript:;" %>
+          </li>
+          <li>
+            <%= link_to t("admin.sidebar.statistic"), "javascript:;" %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to "javascript:;", data: {toggle: "collapse", target: "#statistic"} do%>
+          <i class="fa fa-bar-chart-o fa-fw"></i>
+          <%= t "admin.sidebar.statistic" %>
+          <span class="fa arrow"></span>
+        <% end %>
+        <ul class="nav nav-second-level collapse" id="statistic">
+          <li>
+            <%= link_to t("admin.sidebar.statisticSchedule"), "javascript:;" %>
+          </li>
+          <li>
+            <%= link_to t("admin.sidebar.statisticPassenger"), "javascript:;" %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

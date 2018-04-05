@@ -1,6 +1,9 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 @import './colors';
+
 
 /* miscellaneous */
 .shorter {
@@ -423,9 +426,10 @@ a i:hover {
 
 
 /* user page */
-.user-profile input[type=submit] {
+.user-profile &input[type=submit] {
   margin: 20px 30px;
 }
+
 .user-profile-line {
   margin-top: 10px;
 }
