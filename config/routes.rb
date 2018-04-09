@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
   	root "static_pages#index"
+  	get "/bus", to: "bus#index"
   end
 end
