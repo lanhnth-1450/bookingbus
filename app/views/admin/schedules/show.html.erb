@@ -12,62 +12,108 @@
     </div>
   </div>
   <br>
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h4>
-            <%= t "admin.schedule.show.title" %>
-              <%= @schedule.route.origin.city %> -
-              <%= @schedule.route.destination.city %>
-            <%= link_to admin_schedule_path(id: @schedule.id),
-              class: "btn btn-warning" do %>
-                <h5>
-                  <%= content_tag :i, t("admin.schedule.edit"),
-                    class: "fa fa-edit" %>
-                </h5>
-              <% end %>
-          </h4>
-        </div>
-        <div class="panel-body">
-          <p class="lead"><%= t "admin.schedule.table.stts" %>:
-            <%= @schedule.date < Date.current ? t("admin.schedule.status.done") :
-              status_schedule(@schedule) %>
-            <br>
-          </p>
-          <p class="lead"><%= t "admin.schedule.table.date" %>:
-            <%= l @schedule.date, format: :date_month_year_concise %></p>
-          <p class="lead"><%= t "admin.schedule.show.bus" %>
-            <%= link_to @schedule.bus.name, admin_schedules_path,
-              class: "lead" %>
-          </p>
+  <div class="row col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 style="display: inline-block;">
+          <%= t "admin.schedule.show.title" %>
+          <%= @schedule.origin_address %> -
+          <%= @schedule.destination_address %>
+        </h4>
+        <%= link_to admin_schedule_path(id: @schedule.id),
+          class: "btn btn-sm btn-warning" do %>
+          <%= content_tag :i, t("admin.schedule.edit"),
+            class: "fa fa-edit" %>
+        <% end %>
+      </div>
+      <div class="panel-body">
+        <h4><%= t "admin.schedule.table.stts" %>:
+          <%= @schedule.date < Date.current ? t("admin.schedule.status.done") :
+            status_schedule(@schedule) %>
+          <br>
+        </h4>
+        <h4><%= t "admin.schedule.table.date" %>:
+          <%= l @schedule.date, format: :date_month_year_concise %>
+        </h4>
+        <h4><%= t "admin.schedule.show.bus" %>
+          <%= link_to @schedule.bus.name, admin_schedules_path %>
+        </h4>
+        <div class="row">
           <div class="col-lg-6">
-            <p class="lead"> <%= t "admin.schedule.show.origin" %> </p>
-            <h4><%= t "admin.schedule.show.location" %>
+            <h4> <%= t "admin.schedule.show.origin" %></h4>
+            <h5><%= t "admin.schedule.show.location" %>
               <%= @schedule.start.name %>,
-              <%= @schedule.route.origin.city %></h4>
-            <h4><%= t "admin.schedule.show.at" %>
-              <%= @schedule.time_start %></h4>
+              <%= @schedule.route.origin.city %>
+            </h5>
+            <h5><%= t "admin.schedule.show.at" %>
+              <%= @schedule.time_start %>
+            </h5>
           </div>
           <div class="col-lg-6">
-            <p class="lead"><%= t "admin.schedule.show.destination" %> </p>
-            <h4><%= t "admin.schedule.show.location" %>
+            <h4><%= t "admin.schedule.show.destination" %></h4>
+            <h5><%= t "admin.schedule.show.location" %>
               <%= @schedule.final.name %>,
-                <%= @schedule.route.destination.city %></h4>
-            <h4><%= t "admin.schedule.show.at" %>
-              <%= time_end @schedule %></h4>
+              <%= @schedule.route.destination.city %>
+            </h5>
+            <h5><%= t "admin.schedule.show.at" %>
+              <%= time_end @schedule %>
+            </h5>
             <br>
           </div>
+        </div>
+        <div class="row">
           <div class="col-lg-6">
             <h4><%= t "admin.schedule.show.number_seated" %>
               <%= @schedule.booked_seats.count %>
-              <%= link_to t("admin.schedule.show.detail_seated"), "#" %></h4>
+              <%= collapse_booked "btn btn-info disable_click",
+                "#show_booked_seat" %>
+            </h4>
+          </div>
+          <div class="col-lg-6">
             <h4><%= t "admin.schedule.show.number_seat" %>
               <%= @schedule.empty_slot %>
             </h4>
-            <br>
           </div>
-          <div class="col-lg-6"></div>
+        </div>
+        </div>
+        <div class="collapse" id="show_booked_seat" >
+          <table class="table table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col"><%= t "admin.booked.stt" %></th>
+                <th scope="col"><%= t "admin.booked.booked_date" %></th>
+                <th scope="col"><%= t "admin.booked.customer" %></th>
+                <th scope="col"><%= t "admin.booked.num_seat" %></th>
+                <th scope="col"><%= t "admin.booked.seat" %></th>
+                <th scope="col"><%= t "admin.booked.type" %></th>
+                <th scope="col"><%= t "admin.booked.price" %></th>
+                <th scope="col"><%= t "admin.booked.total_price" %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @schedule.bills.each_with_index do |bill, index| %>
+                <tr class="active">
+                  <th scope="row"><%= index + 1 %></th>
+                  <td><%= l bill.created_at.to_date, format: :date_month_year_concise %></td>
+                  <td><%= bill.user.phone_number %></td>
+                  <td><%= bill.total_ticket %></td>
+                  <td></td><td></td><td></td>
+                  <td><%= bill.total_price %></td>
+                </tr>
+                <% bill.booked_seats.each do |booked| %>
+                  <tr>
+                    <td></td><td></td><td></td><td></td>
+                    <td><%= booked.no_of_seat %></td>
+                    <td><%= @schedule.price_seat booked.no_of_seat %></td>
+                    <td>
+                      <%= @schedule.type_of_seat booked.no_of_seat %>
+                    </td>
+                    <td></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

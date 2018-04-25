@@ -85,6 +85,8 @@ vi:
         date_month_year: "dd/mm/yyyy"
 
   admin:
+    y: "Đã thanh toán!"
+    n: "Chưa thanh toán!"
     layout:
       home: "Trang chủ"
       footer: "footer"
@@ -151,7 +153,14 @@ vi:
         at: "Lúc: "
         location: "Tại: "
         detail_seated: "(Xem)"
-
+    booked:
+      stt: "STT"
+      customer: "SĐT Khách hàng"
+      num_seat: "Số lượng"
+      seat: "Ghế"
+      type: "Loại ghế"
+      booked_date: "Ngày đặt chỗ"
+      price: "Giá vé ghế"
   devise:
     failure:
       user:

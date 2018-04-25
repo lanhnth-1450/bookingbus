@@ -26,7 +26,7 @@ module Admin
                                                             p_interval_ids
     end
 
-    def do_filter *param_road_ids, param_interval_ids
+    def do_filter param_road_ids, param_interval_ids
       @road_ids = param_road_ids
       interval_ids = Interval.list_intervals param_interval_ids
       route_ids = Road.list_routes road_ids

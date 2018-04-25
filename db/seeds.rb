@@ -523,7 +523,7 @@ Schedule.create!(price: 160000,
   start_station_id: 12,
   final_station_id: 1)
 
-Bill.create!(total_price: 100000,
+Bill.create!(total_price: 180000,
   total_ticket: 2,
   user_id: 2,
   schedule_id: 1
@@ -533,14 +533,14 @@ Bill.create!(total_price: 100000,
   BookedSeat.create!(no_of_seat: 5,
     bill_id: 1)
 
-Bill.create!(total_price: 50000,
+Bill.create!(total_price: 60000,
   total_ticket: 1,
   user_id: 2,
   schedule_id: 1)
   BookedSeat.create!(no_of_seat: 21,
     bill_id: 2)
 
-Bill.create!(total_price: 100000,
+Bill.create!(total_price: 150000,
   total_ticket: 2,
   user_id: 4,
   schedule_id: 1)
@@ -549,29 +549,29 @@ Bill.create!(total_price: 100000,
   BookedSeat.create!(no_of_seat: 6,
     bill_id: 3)
 
-Bill.create!(total_price: 50000,
+Bill.create!(total_price: 90000,
   total_ticket: 1,
   user_id: 4,
   schedule_id: 2)
   BookedSeat.create!(no_of_seat: 6,
     bill_id: 4)
 
-Bill.create!(total_price: 100000,
+Bill.create!(total_price: 180000,
   total_ticket: 2,
   user_id: 4,
   schedule_id: 2)
   BookedSeat.create!(no_of_seat: 7,
-    bill_id: 4)
+    bill_id: 5)
   BookedSeat.create!(no_of_seat: 10,
-    bill_id: 4)
+    bill_id: 5)
 
-Bill.create!(total_price: 150000,
+Bill.create!(total_price: 180000,
   total_ticket: 3,
   user_id: 4,
   schedule_id: 2)
   BookedSeat.create!(no_of_seat: 11,
-    bill_id: 5)
+    bill_id: 6)
   BookedSeat.create!(no_of_seat: 12,
-    bill_id: 5)
+    bill_id: 6)
   BookedSeat.create!(no_of_seat: 19,
-    bill_id: 5)
+    bill_id: 6)

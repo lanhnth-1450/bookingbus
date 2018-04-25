@@ -6,26 +6,40 @@ class Schedule < ApplicationRecord
   belongs_to :final, foreign_key: "final_station_id",
     class_name: PickAddress.name
 
+  delegate :model_bus, to: :bus, prefix: false
+
   has_many :bills
 
+  def booked_seats
+    Schedule.joins(bills: :booked_seats).where(id: id).pluck(:no_of_seat)
+  end
+
   def empty_slot
-    bus.number_of_seats - booked_seats.count
+    bus.model_bus.amount_of_seats - booked_seats.count
   end
 
-  def booked_seats_second_floor
-    seats = booked_seats.pluck(:no_of_seat)
-    booked_seats = []
-    seats.each do |seat|
-      booked_seats << seat if seat >= Settings.slot_per_floor
-    end
+  def price_seat no_of_seat
+    Schedule.joins(bus: {model_bus: {active_seat_coordinates: :type_of_seat}})
+      .where("schedules.id = ?", id)
+      .where("active_seat_coordinates.number = ?", no_of_seat)
+      .pluck(:bonus_price).first + price
   end
 
-  def booked_seats_first_floor
-    seats = booked_seats.pluck(:no_of_seat)
-    booked_seats = []
-    seats.each do |seat|
-      booked_seats << seat if seat < Settings.slot_per_floor
-    end
+  def type_of_seat no_of_seat
+    Schedule.joins(bus: {model_bus: {active_seat_coordinates: :type_of_seat}})
+      .where("schedules.id = ?", id)
+      .where("active_seat_coordinates.number = ?", no_of_seat)
+      .pluck("type_of_seats.name").first
+  end
+
+  def origin_address
+    Address.joins(routes_start: :schedules).where("schedules.id = ?", id)
+      .distinct.pluck(:city).first
+  end
+
+  def destination_address
+    Address.joins(routes_final: :schedules).where("schedules.id = ?", id)
+      .distinct.pluck(:city).first
   end
 
   class << self

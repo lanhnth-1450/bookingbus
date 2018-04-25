@@ -13,4 +13,11 @@ module Admin::ScheduleHelper
     @schedule = schedule
     @schedule.date == Date.current ? t("admin.stt.now") : t("admin.stt.will_do")
   end
+
+  def collapse_booked name, target
+    link_to "#", class: "#{name}", data: {toggle: "collapse", target: target} do
+      "<i class='glyphicon glyphicon-list-alt'></i>".html_safe +
+        t("admin.schedule.show.detail_seated")
+    end
+  end
 end

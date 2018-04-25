@@ -21,4 +21,5 @@ document.addEventListener("turbolinks:load", function() {
   $('.disable_click').on('click', function(event) {
     event.preventDefault();
   })
+  $(".selectpicker").selectpicker();
 })

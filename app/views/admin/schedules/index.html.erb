@@ -12,14 +12,16 @@
 
   <div class="row">
     <div class="col-lg-12">
-      <%= t "admin.schedule.filter"%>
-      <%= select_tag 'id', options_for_select(list_items(@support.roads)),
-        title: t("admin.schedule.filter_by_road"), class: "selectpicker",
-        multiple: true, id: "select-road" %>
+      <div>
+        <%= t "admin.schedule.filter"%>
+        <%= select_tag :id, options_for_select(list_items(@support.roads)),
+          title: t("admin.schedule.filter_by_road"), class: "selectpicker",
+          multiple: true, id: "select-road" %>
 
-      <%= select_tag 'id', options_for_select(list_items(@support.intervals)),
-        title: t("admin.schedule.filter_by_interval"), class: "selectpicker",
-        multiple: true, id: "select-interval" %>
+        <%= select_tag :id, options_for_select(list_items(@support.intervals)),
+          title: t("admin.schedule.filter_by_interval"), class: "selectpicker",
+          multiple: true, id: "select-interval" %>
+      </div>
     </div>
   </div>
 

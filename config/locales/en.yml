@@ -68,6 +68,8 @@ en:
   manage_pages: "Manage pages"
 
   admin:
+    y: "Paymented!"
+    n: "Not yet!"
     layout:
       home: "Admin home"
       footer: "footer"
@@ -134,7 +136,14 @@ en:
         at: "at: "
         location: "Location: "
         detail_seated: "Detail seated"
-
+    booked:
+      stt: "Index"
+      customer: "Customer phone"
+      num_seat: "Num of seat"
+      seat: "Seat"
+      type: "Type of seat"
+      booked_date: "Booked date"
+      price: "Price"
   devise:
     failure:
       user:
