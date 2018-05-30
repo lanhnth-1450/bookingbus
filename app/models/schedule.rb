@@ -1,4 +1,7 @@
 class Schedule < ApplicationRecord
+  ATTR = %i(price time_start time_spent bus_id route_id interval_id date
+    start_station_id final_station_id)
+
   belongs_to :bus
   belongs_to :route
   belongs_to :start, foreign_key: "start_station_id",
@@ -14,6 +17,14 @@ class Schedule < ApplicationRecord
 
   has_many :bills
   has_many :booked_seats, through: :bills
+
+  validates :date, presence: true
+  validates :time_start, presence: true
+  validates :time_spent, presence: true
+  validates :start_station_id, presence: true
+  validates :final_station_id, presence: true
+
+  scope :order_by_date, ->{order(date: :desc, time_start: :asc)}
 
   def empty_slot
     model_bus.amount_of_seats - booked_seats.count
@@ -54,7 +65,13 @@ class Schedule < ApplicationRecord
     end
 
     def filter_schedules r_ids, i_ids
-      Schedule.where route_id: r_ids, interval_id: i_ids
+      Schedule.where(route_id: r_ids, interval_id: i_ids).order_by_date
+    end
+
+    def find_schedule route_ids, date, time
+      schedules = Schedule.where route_id: route_ids, date: date,
+        time_start: time
+      schedules.to_a
     end
   end
 end

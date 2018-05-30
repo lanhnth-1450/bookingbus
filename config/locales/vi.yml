@@ -107,6 +107,8 @@ vi:
       hi_admin: "Chào admin"
     error:
       invalid_schedule: "Không tìm thấy lịch trình!"
+    success:
+      create_success: "Thêm thành công!"
     stt:
       now: "ĐANG ĐI"
       will_do: "SẮP ĐI"
@@ -184,6 +186,8 @@ vi:
         price: "Giá vé (vnd)"
         description: "Mô tả thêm"
         submit: "Submit form"
+        schedule_existed: "Lịch trình này đã tồn tại! Chọn lại khung giờ khác"
+        no_bus: "Không có xe nào còn trống trong khung giờ này!"
     booked:
       stt: "STT"
       customer: "SĐT Khách hàng"

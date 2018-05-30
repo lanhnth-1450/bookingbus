@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  var v = $('#booking-form').validate({
+  var validation = $('#booking-form').validate({
     rules: {
       schedule_route_id: {
         required: true
@@ -16,10 +16,10 @@ $(document).ready(function () {
       schedule_date: {
         required: true
       },
-      time_start: {
+      schedule_time_start: {
         required: true
       },
-      time_spent: {
+      schedule_time_spent: {
         required: true
       },
       schedule_select_bus: {
@@ -30,9 +30,6 @@ $(document).ready(function () {
       },
       des: {
         required: true
-      },
-      schedule_time_during: {
-        required: true
       }
     },
     errorElement: 'span',
@@ -42,10 +39,8 @@ $(document).ready(function () {
     }
   });
 
-  // $( '.datepicker' ).datepicker({dateFormat: 'dd/mm/yy'});
-
   $('.next-btn1').click(function () {
-    if (v.form()) {
+    if (validation.form()) {
       $('.tab-pane').hide();
       $('#step2').fadeIn(1000);
       $('.progressbar-dots').removeClass('active');
@@ -55,23 +50,44 @@ $(document).ready(function () {
   });
 
   $('.next-btn2').click(function () {
-    if (v.form()) {
-      $('.tab-pane').hide();
-      $('#step3').fadeIn(1000);
-      $('.progressbar-dots').removeClass('active');
-      $('.progressbar-dots:nth-child(1)').addClass('active');
-      $('.progressbar-dots:nth-child(2)').addClass('active');
-      $('.progressbar-dots:nth-child(3)').addClass('active');
-    }
-  });
+    if (validation.form()) {
+      var route_id = $('#schedule_route_id').val();
+      var date = $('#schedule_date').val();
+      var time = $('#schedule_time_start').val();
+      var interval = $('#schedule_interval_id').val();
+      $.ajax({
+        url: '/admin/bus/new',
+        data: {
+          'route_id': route_id,
+          'date': date,
+          'time': time,
+          'interval': interval
+        },
+        dataType: 'json',
+        type: 'GET',
+        success: function (data) {
+          if (data == null) {
+            alert(I18n.t('admin.schedule.create.schedule_existed'));
+          }
+          else if (data.length == 0) {
+            alert(I18n.t('admin.schedule.create.no_bus')); 
+          }
+          else {
+            $('.tab-pane').hide();
+            $('#step3').fadeIn(1000);
+            $('.progressbar-dots').removeClass('active');
+            $('.progressbar-dots:nth-child(1)').addClass('active');
+            $('.progressbar-dots:nth-child(2)').addClass('active');
+            $('.progressbar-dots:nth-child(3)').addClass('active');
 
-  $('.submit-btn').click(function () {
-    if (v.form()) {
-      $('#loader').show();
-      setTimeout(function () {
-        $('#booking-form').html('<h2>Schedule was created successfully!</h2>');
-      }, 1000);
-      return false;
+            $('#schedule_bus_id').empty();
+            for (i in data) {
+              $('#schedule_bus_id').append('<option value=' +
+                data[i].id + '>' + data[i].name + '</option>');
+            }
+          }
+        }
+      });
     }
   });
 
@@ -109,15 +125,16 @@ $(document).on('turbolinks:load', function () {
           if (pick_origin != '') {
             $('#schedule_start_station_id').empty();
             for (i in pick_origin) {
-              $('#schedule_start_station_id').append('<option>' + pick_origin[i].name
-                + '</option>');
+              $('#schedule_start_station_id').append('<option value=' +
+                pick_origin[i].id + '>' + pick_origin[i].name + '</option>');
             }
           }
           if (pick_destination != '') {
             $('#schedule_final_station_id').empty();
             for (i in pick_destination) {
-              $('#schedule_final_station_id').append('<option>' +
-                pick_destination[i].name + '</option>');
+              $('#schedule_final_station_id').append('<option value=' +
+                pick_destination[i].id + '>' + pick_destination[i].name +
+                '</option>');
             }
           }
         }

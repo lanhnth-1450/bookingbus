@@ -1,6 +1,6 @@
 class Supports::ManageSchedulesSupport
   def schedules
-    @schedules ||= Schedule.all
+    @schedules ||= Schedule.all.order_by_date
   end
 
   def roads

@@ -88,6 +88,8 @@ en:
       hi_admin: "Hi admin"
     error:
       invalid_schedule: "Invalid schedule!"
+    success:
+      create_success: "Create success!"
     stt:
       now: "NOW"
       will_do: "IN THE FUTURE"
@@ -165,6 +167,8 @@ en:
         price: "Price (vnd)"
         description: "Description"
         submit: "Submit form"
+        schedule_existed: "This schedule is already exist!"
+        no_bus: "Have not bus is suitable for this time and date!"
     booked:
       stt: "Index"
       customer: "Customer phone"

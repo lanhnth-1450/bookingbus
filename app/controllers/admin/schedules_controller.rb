@@ -25,9 +25,19 @@ module Admin
     def show
     end
 
-    attr_reader :road_ids, :schedule
+    def create
+      @schedule = Schedule.new(schedule_params)
+      if schedule.save
+        flash[:success] = t "admin.success.create_success"
+        redirect_to admin_schedules_path
+      else
+        render :new
+      end
+    end
 
     private
+
+    attr_reader :road_ids, :schedule
 
     def list_pick
       find_route
@@ -59,6 +69,10 @@ module Admin
       return if schedule
       flash[:danger] = t "admin.error.invalid_schedule"
       redirect_to admin_schedules_path
+    end
+
+    def schedule_params
+      params.require(:schedule).permit Schedule::ATTR
     end
   end
 end

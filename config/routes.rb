@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "home#show"
-    resources :schedules, only: [:index, :show, :new]
+    get "/bus/new"
+    resources :schedules, only: [:index, :show, :new, :create]
   end
   devise_for :users
 

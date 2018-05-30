@@ -7,7 +7,8 @@
       </div>
       <div class="panel-body">
         <div class="row">
-          <%= form_for [:admin, support.schedule], html: {id: "booking-form",
+          <%= form_for support.schedule, url: admin_schedules_path,
+            html: {id: "booking-form",
             class: "form-horizontal form-bordered"} do |f| %>
             <div class="progress-wrap">
               <div class="line-progress-bar">
