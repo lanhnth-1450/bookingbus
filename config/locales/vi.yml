@@ -235,6 +235,7 @@ vi:
       select_year: "Chọn năm"
       by_months: "Theo các tháng"
       by_years: "Theo các năm"
+      submit: "Thống kê"
     bus:
       title: "Danh sách xe"
       table:

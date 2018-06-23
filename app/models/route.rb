@@ -6,6 +6,7 @@ class Route < ApplicationRecord
 
   has_many :schedules
   has_many :pick_addresses, through: :route_pick_addresses
+  has_many :bills, through: :schedules
 
   def name
     origin.city + "-" + destination.city

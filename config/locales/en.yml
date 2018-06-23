@@ -213,6 +213,7 @@ en:
       select_year: "Select year"
       by_months: "By months"
       by_years: "By years"
+      submit: "Filter"
     bus:
       title: "Bus list"
       table:

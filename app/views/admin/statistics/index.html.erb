@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-3">
           <%= select_tag :route_id, options_for_select(list_items(@routes)),
-            prompt: t("admin.schedule.create.select_sth") %>
+            prompt: t("admin.schedule.create.select_sth"), class: "form-control" %>
         </div>
       </div>
       <div class="row">
@@ -28,16 +28,18 @@
         </div>
         <div class="col-md-3">
           <%= select_tag :select_type, options_for_select(list_type),
-            {prompt: t("admin.statistic.select_type")}%>
+            prompt: t("admin.statistic.select_type"), class: "form-control"%>
         </div>
         <div class="col-md-2" id="year">
           <%= select_tag "select_year",
             options_for_select(2015..2018),
-            {prompt: t("admin.statistic.select_year")} %>
+            prompt: t("admin.statistic.select_year"), class: "form-control" %>
         </div>
         <div class="col-md-2">
-          <button class="btn btn-primary" type="button">
-          <%= t "admin.statistic.submit" %>
+          <%= button_to t("admin.statistic.submit"), admin_statistics_path,
+            method: :get %>
+          <button class="btn btn-primary" type="button" >
+            <%= t "admin.statistic.submit" %>
           </button>
         </div>
       </div>
