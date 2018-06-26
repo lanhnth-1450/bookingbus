@@ -762,3 +762,15 @@ Bus.create!(name: "Hyundai Universe Noble 40 chỗ",
       bill_id: 6)
     BookedSeat.create!(no_of_seat: 19,
       bill_id: 6)
+
+(1..12).each do |schedule_id|
+  Bill.create!(total_price: 300000,
+    total_ticket: 2,
+    user_id: 2,
+    schedule_id: schedule_id)
+  bill_id = schedule_id + 6
+  BookedSeat.create!(no_of_seat: 2,
+    bill_id: bill_id)
+  BookedSeat.create!(no_of_seat: 3,
+    bill_id: bill_id)
+end
